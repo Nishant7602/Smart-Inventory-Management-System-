@@ -37,6 +37,23 @@ public class Product {
         this.category = category;
         this.supplier = supplier;
     }
+    private int quantity;
+    private String description;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 
     // Getters and Setters
     public long getId() { return id; }

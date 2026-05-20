@@ -25,6 +25,7 @@ public class Invoice {
         createdAt = new Date();
     }
     private double price;   // ✅ ADD THIS
+    
     public double getPrice() {
         return price;
     }

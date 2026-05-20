@@ -11,9 +11,10 @@ public interface ProductDAO {
 
     void deleteProduct(long id);
 
-    Product getProductById(int id);
+    Product getProductById(Long id);
 
     List<Product> getAllProducts();
 long getProductCount();
 long getLowStockCount();
+
 }

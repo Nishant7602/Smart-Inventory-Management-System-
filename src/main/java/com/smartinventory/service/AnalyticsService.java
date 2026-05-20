@@ -17,5 +17,6 @@ public interface AnalyticsService {
     List<Object[]> getMonthlySalesReport();
     List<Product> getLowStockProducts();
     Long getTotalProducts();
-
+    long getTotalUsers();
+    long getTotalInvoices();
 }

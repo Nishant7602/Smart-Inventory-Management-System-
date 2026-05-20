@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -43,8 +44,9 @@ public class AnalyticsDAOImpl implements AnalyticsDAO {
     
     @Override
     public double getTotalRevenue() {
-        String hql = "SELECT SUM(o.totalAmount) FROM SalesOrder o";
-        Double result = (Double) sessionFactory.getCurrentSession().createQuery(hql).uniqueResult();
+        String hql = "SELECT SUM(i.price) FROM Invoice i";
+        Query<Double> query = sessionFactory.getCurrentSession().createQuery(hql, Double.class);
+        Double result = query.uniqueResult();
         return result != null ? result : 0.0;
     }
     public Long countOrders() {

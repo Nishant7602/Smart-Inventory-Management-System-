@@ -10,6 +10,7 @@ public interface InvoiceService {
     List<Invoice> getAllInvoices();
     double getTotalRevenue();
     long getInvoiceCount();
-    void deleteInvoice(int id);
+    void deleteInvoice(Long id);
     Invoice getInvoiceById(int id);
+    long getTotalInvoices();
 }

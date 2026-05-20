@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.smartinventory.entity.Product;
+import com.smartinventory.service.InvoiceService;
 import com.smartinventory.service.ProductService;
 
 @Controller
@@ -16,6 +17,8 @@ public class ProductWebController {
 
     @Autowired
     private ProductService productService;
+    @Autowired 
+    private InvoiceService invoiceService;
 
     // Show all products
     @GetMapping("/list")
@@ -36,6 +39,7 @@ public class ProductWebController {
             return "add-warehouse";
         }
     }
+    
     // Show add product form
     @GetMapping("/addProduct")
     public String showAddForm(Model model) {
@@ -61,16 +65,17 @@ public class ProductWebController {
         return "redirect:/product/list";
     }
 
-
+    @PostMapping("/update")
+    public String updateProduct(@ModelAttribute("product") Product product) {
+        productService.updateProduct(product);
+        return "redirect:/product/list";
+    }
     // Show edit form
-    @GetMapping("/edit")
-    public String editProduct(@RequestParam("id") int id, Model model) {
-
+    @GetMapping("/editProduct")
+    public String editProduct(@RequestParam("id") Long id, Model model) {
         Product product = productService.getProductById(id);
-
         model.addAttribute("product", product);
-
-        return "product-form";
+        return "product-edit";
     }
 
     // Delete product

@@ -21,7 +21,7 @@
     <mvc:annotation-driven/>
 <tx:annotation-driven transaction-manager="transactionManager"/>
     <!-- DataSource -->
-<bean id="dataSource"
+<!-- <bean id="dataSource"
       class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 
     <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
@@ -32,6 +32,22 @@
     <property name="username" value="avnadmin"/>
 
     <property name="password" value="AVNS_x7FNdAXu3SGy42hnUM4"/>
+
+</bean> -->
+
+<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+
+    <!-- The driver stays the same -->
+    <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+
+    <!-- Change the URL to point to localhost (port 3306 is default) and your database name -->
+    <property name="url" value="jdbc:mysql://localhost:3306/inventory_db?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=UTC"/>
+
+    <!-- Put your local MySQL username here (usually 'root') -->
+    <property name="username" value="root"/>
+
+    <!-- Put your local MySQL password here -->
+    <property name="password" value="Nish_4850"/>
 
 </bean>
 

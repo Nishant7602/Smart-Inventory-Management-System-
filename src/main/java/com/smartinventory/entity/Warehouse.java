@@ -25,15 +25,39 @@ public class Warehouse {
         this.name = name;
         this.location = location;
     }
+    private String contact;
 
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
     public int getId() {
         return id;
     }
+    private String managerName;
 
+    public String getManagerName() {
+        return managerName;
+    }
+
+    public void setManagerName(String managerName) {
+        this.managerName = managerName;
+    }
     public void setId(int id) {
         this.id = id;
     }
+    private Integer capacity;
 
+    public Integer getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(Integer capacity) {
+        this.capacity = capacity;
+    }
 
     public String getName() {
         return name;

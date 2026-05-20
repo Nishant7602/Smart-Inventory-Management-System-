@@ -145,7 +145,7 @@ td a {
                 <td>${inv.warehouse.id}</td>
                 <td>${inv.user.id}</td>
                 <td>${inv.quantity}</td>
-                <td>${inv.totalPrice}</td>
+                <td>${inv.price}</td>
                 <td>${inv.createdAt}</td>
                 <td><a href="${pageContext.request.contextPath}/invoice/delete?id=${inv.id}" onclick="return confirm('Delete this invoice?')">Delete</a></td>
             </tr>

@@ -30,7 +30,11 @@ public class InvoiceServiceImpl implements InvoiceService {
     public List<Invoice> getAllInvoices() {
         return invoiceDAO.getAllInvoices();
     }
-    
+    @Override
+    public long getTotalInvoices() {
+        return invoiceDAO.getTotalInvoices();
+    }
+
     
     @Override
     public double getTotalRevenue() {
@@ -47,7 +51,7 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 @Override
 @Transactional
-public void deleteInvoice(int id) {
+public void deleteInvoice(Long id) {
 	invoiceDAO.deleteInvoice(id);
 }
    

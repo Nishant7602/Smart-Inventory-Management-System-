@@ -39,6 +39,16 @@ public class UserDAOImpl implements UserDAO {
     public User getUserById(Long id) {
         return sessionFactory.getCurrentSession().get(User.class, id);
     }
+    @Override
+    public Long getTotalUsers() {
+        Session session = sessionFactory.getCurrentSession();
+
+        Long count = (Long) session.createQuery(
+                "SELECT COUNT(u.id) FROM User u"
+        ).uniqueResult();
+
+        return count != null ? count : 0L;
+    }
 
     @Override
     public void updateUser(User user) {
@@ -57,4 +67,5 @@ public class UserDAOImpl implements UserDAO {
     public void saveUser(User user) {
         sessionFactory.getCurrentSession().save(user);
     }
+    
 }

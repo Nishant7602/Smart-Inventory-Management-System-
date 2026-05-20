@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.smartinventory.dao.InvoiceDAO;
 import com.smartinventory.dao.ProductDAO;
 import com.smartinventory.entity.Product;
 import com.smartinventory.service.ProductService;
@@ -16,6 +17,8 @@ public class ProductServiceImpl implements ProductService {
 
     @Autowired
     private ProductDAO productDAO;
+    @Autowired
+    private InvoiceDAO invoiceDAO;
 
     @Override
     public void saveProduct(Product product) {
@@ -32,10 +35,6 @@ public class ProductServiceImpl implements ProductService {
         productDAO.deleteProduct(id);
     }
 
-    @Override
-    public Product getProductById(int id) {
-        return productDAO.getProductById(id);
-    }
 
     @Override
     public List<Product> getAllProducts() {
@@ -49,5 +48,10 @@ public class ProductServiceImpl implements ProductService {
     public long getLowStockCount() {
     	return productDAO.getLowStockCount();
     }
+    @Override
+    public Product getProductById(Long id) {
+        return productDAO.getProductById(id);
+    }
+
     
 }

@@ -29,6 +29,7 @@ public class InvoiceWebController {
         model.addAttribute("invoices", invoiceService.getAllInvoices());
         return "invoice-list";
     }
+    
 
     // Add Form
     @GetMapping("/add")
@@ -55,7 +56,7 @@ public class InvoiceWebController {
 
     // Delete
     @GetMapping("/delete")
-    public String delete(@RequestParam int id) {
+    public String delete(@RequestParam Long id) {
         invoiceService.deleteInvoice(id);
         return "redirect:/invoice/list";
     }

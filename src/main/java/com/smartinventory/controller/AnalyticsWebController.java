@@ -30,24 +30,16 @@ public class AnalyticsWebController {
         Long totalProducts = analyticsService.getTotalProducts();
         Long totalOrders = analyticsService.getTotalOrders();
         double totalRevenue = analyticsService.getTotalRevenue();
-
+        model.addAttribute("totalInvoices", analyticsService.getTotalInvoices());
         model.addAttribute("totalProducts", totalProducts);
         model.addAttribute("totalOrders", totalOrders);
         model.addAttribute("totalRevenue", totalRevenue);
-
+        model.addAttribute("products", productService.getAllProducts());
+        model.addAttribute("totalUsers", analyticsService.getTotalUsers());
         return "analytics-dashboard";
     }
 
-    // Low Stock Products
-    @GetMapping("/analytics/low-stock")
-    public String lowStockProducts(Model model) {
 
-        List<Product> lowStockProducts = analyticsService.getLowStockProducts();
-
-        model.addAttribute("products", lowStockProducts);
-
-        return "low-stock";
-    }
     @GetMapping("/analytics")
     public String showAnalyticsPage(Model model) {
 

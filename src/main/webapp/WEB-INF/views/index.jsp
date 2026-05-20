@@ -153,11 +153,12 @@ transform:scale(1.05);
 </div>
 
 <div class="col-md-4">
-<div class="card-body">
 <div class="card text-center shadow">
-    <h3>🧾 Invoices</h3>
+<div class="card-body">
+
+    <h4>🧾 Invoices</h3>
     <p>Manage all invoices</p>
-    <a href="invoice/list">View Invoices</a>
+    <a href="invoice/list" class="btn btn-warning">Open</a>
 </div>
 </div>
 </div>

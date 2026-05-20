@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.smartinventory.dao.ProductDAO;
+import com.smartinventory.entity.Invoice;
 import com.smartinventory.entity.Product;
 
 @Repository
@@ -51,7 +52,7 @@ public class ProductDAOImpl implements ProductDAO {
 
     // Get product by ID
     @Override
-    public Product getProductById(int id) {
+    public Product getProductById(Long id) {
 
         Session session = sessionFactory.getCurrentSession();
 
@@ -75,4 +76,5 @@ public class ProductDAOImpl implements ProductDAO {
     	Long count=(long)sessionFactory.getCurrentSession().createQuery("select count(p.id) from Product p where p.stock<10").uniqueResult();
     	return count!=null ? count : 0;
     }
+    
 }

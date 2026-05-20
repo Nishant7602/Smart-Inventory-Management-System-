@@ -11,10 +11,11 @@ public interface ProductService {
 
     void deleteProduct(long id);
 
-    Product getProductById(int id);
-
+   
     List<Product> getAllProducts();
     long getProductCount();
     long getLowStockCount();
-
+   
+    Product getProductById(Long id);
+   // ✅ must be Long
 }

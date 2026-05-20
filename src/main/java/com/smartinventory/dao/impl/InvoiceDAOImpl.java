@@ -33,14 +33,18 @@ public class InvoiceDAOImpl implements InvoiceDAO {
 
         return query.getResultList();
     }
+    
+
     @Override
     public double getTotalRevenue() {
 
-        Double result = (Double) sessionFactory.getCurrentSession()
-                .createQuery("select sum(b.totalAmount) from Billing b")
-                .uniqueResult();
+        Session session = sessionFactory.getCurrentSession();
 
-        return (result != null) ? result : 0.0;   // ✅ FIX
+        Double total = (Double) session.createQuery(
+                "SELECT SUM(i.price) FROM Invoices i"
+        ).uniqueResult();
+System.out.print("total revenue"+total);
+        return total != null ? total : 0.0;
     }
 
     @Override
@@ -51,7 +55,7 @@ public class InvoiceDAOImpl implements InvoiceDAO {
     }
     // ✅ Get Invoice by ID
  @Override
- public void deleteInvoice(int id) {
+ public void deleteInvoice(Long id) {
 	    Invoice inv = sessionFactory
 	        .getCurrentSession()
 	        .get(Invoice.class, id);
@@ -61,10 +65,21 @@ public class InvoiceDAOImpl implements InvoiceDAO {
 	    }
 	}
  @Override
+ public long getTotalInvoices() {
+     Session session = sessionFactory.getCurrentSession();
+
+     Long count = (Long) session.createQuery(
+             "SELECT COUNT(i.id) FROM Invoice i"
+     ).uniqueResult();
+
+     return count != null ? count : 0L;
+ }
+ @Override
  public Invoice getInvoiceById(int id) {
 
      return sessionFactory
              .getCurrentSession()
              .get(Invoice.class, id);
  }
+ 
 }

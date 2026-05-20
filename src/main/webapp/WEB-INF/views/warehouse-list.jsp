@@ -1,102 +1,95 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
+<!DOCTYPE html>
 <html>
-<head><title>Warehouses</title></head>
-<body>
-<style>
+<head>
+    <title>Warehouse List</title>
 
-        /* 🌙 Page */
+    <!-- Bootstrap -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <style>
         body {
-            font-family: 'Segoe UI', Arial;
-            background: #f4f6f9;
-            margin: 0;
+            background-color: #f4f6f9;
         }
-
-        .container {
-            width: 90%;
-            margin: 30px auto;
+        .table-container {
+            margin-top: 40px;
         }
-
-        /* 🔷 Header */
-        .top-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
+        .card {
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
-
-        h2 {
-            color: #333;
-        }
-
-        /* 🔘 Button */
-        .btn {
-            padding: 8px 14px;
+        .btn-sm {
             border-radius: 6px;
-            text-decoration: none;
-            color: white;
-            font-size: 14px;
         }
-
-        .add-btn {
-            background: #28a745;
-        }
-
-        .edit-btn {
-            background: #007bff;
-        }
-
-        .delete-btn {
-            background: #dc3545;
-        }
-
-        /* 📊 Table */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-        }
-
-        th {
-            background: #1e293b;
-            color: white;
-            padding: 12px;
-            text-transform: uppercase;
-        }
-
-        td {
-            padding: 12px;
-            text-align: center;
-            border-bottom: 1px solid #eee;
-        }
-
-        tr:hover {
-            background: #f1f5f9;
-        }
-
-        tr:nth-child(even) {
-            background: #fafafa;
-        }
-
     </style>
-<h2>Warehouses</h2>
-<a href="add">Add Warehouse</a>
-<table border="1">
-    <tr><th>ID</th><th>Name</th><th>Location</th><th>Actions</th></tr>
-    <c:forEach var="w" items="${warehouses}">
-        <tr>
-            <td>${w.id}</td>
-            <td>${w.name}</td>
-            <td>${w.location}</td>
-            <td>
-                <a href="warehouses/edit/${w.id}">Edit</a>
-                <a href="warehouses/delete/${w.id}">Delete</a>
-            </td>
-        </tr>
-    </c:forEach>
-</table>
-<a href="/smart-inventory-web/dashboard">Dashboard</a>
+</head>
+
+<body>
+
+<div class="container table-container">
+
+    <div class="card p-4">
+
+        <!-- Header -->
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h3>🏬 Warehouse List</h3>
+            <a href="add" class="btn btn-primary">+ Add Warehouse</a>
+        </div>
+
+        <!-- Table -->
+        <table class="table table-bordered table-hover text-center align-middle">
+
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Capacity</th>
+                    <th>Manager</th>
+                    <th>Contact</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <c:forEach var="w" items="${warehouses}">
+                    <tr>
+                        <td>${w.id}</td>
+                        <td>${w.name}</td>
+                        <td>${w.location}</td>
+                        <td>${w.capacity}</td>
+                        <td>${w.managerName}</td>
+                        <td>${w.contact}</td>
+
+                        <td>
+                            <a href="edit?id=${w.id}" class="btn btn-warning btn-sm">Edit</a>
+
+                            <a href="delete?id=${w.id}"
+                               class="btn btn-danger btn-sm"
+                               onclick="return confirm('Are you sure you want to delete this warehouse?');">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                </c:forEach>
+
+                <!-- If no data -->
+                <c:if test="${empty warehouses}">
+                    <tr>
+                        <td colspan="7">No Warehouses Found</td>
+                    </tr>
+                </c:if>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
 </body>
 </html>
